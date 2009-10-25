@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+<string> = r'[\w\d\s]*'
+<int> = r'(-)?\d+'
+<float> = r'\d+(\.\d+)?'
+<list> =
+<skills> = r'attack|defense|power|wisdom|mana'
+<ongetaction> = r'(increase)|(change)'
+<artefactuse> =
+-->
+
+<configuration version='0.2'>
+<!-- abstract - taka klasa w rzeczywistości istnieć nie będzie,
+w edytorze też się nie pojawi-->
+<Base abstract=''>
+    <!-- type wskazuje jakiego typu powinna być zmienna -->
+    <name type='string' >
+    </name>
+</Base>
+
+<!-- extends czyli dziedziczenie, bo mi się w każdym nie chciało
+pisać, że ma też nazwę, tak więc jeżeli coś dziedziczy, to ma
+dodatkowo wszystkie atrybuty z ojca-->
+<Road extends='Base'>
+    <costModificator type='int'>
+    </costModificator>
+</Road>
+
+<Payed extends='Base' abstract=''>
+    <prize type='int'>
+    </prize>
+</Payed>
+
+<Autobahn extends='Road Payed'>
+    <size type='int'>
+    </size>
+</Autobahn>
+
+</configuration>
+

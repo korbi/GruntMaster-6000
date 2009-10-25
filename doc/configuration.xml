@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+<string> = r'[\w\d\s]*'
+<int> = r'(-)?\d+'
+<float> = r'\d+(\.\d+)?'
+<list> =
+<skills> = r'attack|defense|power|wisdom|mana'
+<ongetaction> = r'(increase)|(change)'
+<artefactuse> =
+-->
+
+<configuration version='0.2'>
+<!-- abstract - taka klasa w rzeczywistości istnieć nie będzie,
+w edytorze też się nie pojawi-->
+<Base abstract=''>
+    <!-- type wskazuje jakiego typu powinna być zmienna -->
+    <name type='string' >
+    </name>
+</Base>
+
+<!-- extends czyli dziedziczenie, bo mi się w każdym nie chciało
+pisać, że ma też nazwę, tak więc jeżeli coś dziedziczy, to ma
+dodatkowo wszystkie atrybuty z ojca-->
+<Road extends='Base'>
+    <costModificator type='int'>
+    </costModificator>
+</Road>
+
+<Ground extends='Base'>
+    <cost type="int">
+    </cost>
+</Ground>
+
+<Skill extends='Base'>
+    <!-- jeżeli type to jest klasa, tzn. że poprawną wartością
+    jest referencja-->
+    <inUse type='MagicItemUse'>
+    </inUse>
+    <upgradeOf type="Skill">
+    </upgradeOf>
+</Skill>
+
+<Item extends='Base'>
+</Item>
+
+<MagicItemUse>
+    <pattern type='regexp'>
+    </pattern>
+</MagicItemUse>
+
+<MagicItemType extends='Base' predefined="">
+</MagicItemType>
+
+<MagickItem extends='Base'>
+    <inUse type='MagicItemUse'>
+    </inUse>
+    <type type="MagicItemType">
+    </type>
+</MagickItem>
+
+<Obstacle extends='Base'>
+</Obstacle>
+
+<Unit extends='Base'>
+    <life type='int'>
+    </life>
+    <attack type='int'>
+    </attack>
+    <distanceAttack type='int'>
+    </distanceAttack>
+    <defense type='int'>
+    </defense>
+    <movePoints type='int'>
+    </movePoints>
+</Unit>
+
+<Resource extends='Base'>
+</Resource>
+
+<Player extends='Base'>
+    <color value='string'>
+    </color>
+</Player>
+
+<!-- playable powinno znaleźć się w przy każdej zmiennej,
+która jest zależna od konkretnej gry, a nie mapy/logiki -->
+<Owned >
+    <owner type='Player' playable=''>
+    </owner>
+</Owned>
+
+<EnterOption predefined=''>
+</EnterOption>
+
+<Enterable extends='Base'>
+    <width type='int'></width>
+    <height type='int'></height>
+    <occupiedPlace type='list' listof='bool'></occupiedPlace>
+    <enterPlace type='int'></enterPlace>
+    <onEnter type='EnterOption'></onEnter>
+</Enterable>
+
+<Mine extends='Owned Enterable'>
+    <generates type='Resource'>
+    </generates>
+</Mine>
+
+<Building extends='Enterable'>
+    <produce type="Unit">
+    </produce>
+</Building>
+
+<UnitGroup extends='Unit'>
+    <size type='int'>
+    </size>
+</UnitGroup>
+
+<Army>
+    <maxsize type='int' classvariable=''>
+    
+    </maxsize>
+    <this type='list' listof="UnitGroup">
+    
+    </this>
+</Army>
+
+<Spell extends='Base'>
+    <action type='SpellAction'>
+    </action>
+</Spell>
+
+<SpellGroup extends='Base'>
+    <spells type='list' listof='Spell'>
+    </spells>
+</SpellGroup>
+
+<Hero extends='Enterable Owned'>
+    <maxskills type='int' classvariable=''>
+    </maxskills>
+    <magickItemPlace type='list' listof='MagicItemType' classvariable=''>
+    </magickItemPlace>
+    <level type="int">
+    </level>
+    <experience type="int">
+    </experience>
+    <attack type="int">
+    </attack>
+    <defense type="int">
+    </defense>
+    <power type="int">
+    </power>
+    <wisdom type="int">
+    </wisdom>
+    <mana type="int">
+    </mana>
+    <movePoints type="int">
+    </movePoints>
+    <spells tyle='list' listof='Spell'>
+    </spells>
+    <skills tyle='list' listof='Skill'>
+    </skills>
+    <equipment tyle='list' listof='MagicItem'>
+    </equipment>
+    <inuse tyle='list' listof='MagicItem'>
+    </inuse>
+    <army type="Army">
+    </army>
+</Hero>
+
+<Castle extends='Owned Enterable'>
+    <buildings type="list" listof="Building">
+    </buildings>
+    <heroes type="list" listof="Hero">
+    </heroes>
+    <hero type="Hero">
+    </hero>
+    <army type="Army">
+    </army>
+</Castle>
+
+</configuration>
+
