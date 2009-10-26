@@ -84,7 +84,7 @@ dodatkowo wszystkie atrybuty z ojca-->
 
 <!-- playable powinno znaleźć się w przy każdej zmiennej,
 która jest zależna od konkretnej gry, a nie mapy/logiki -->
-<Owned >
+<Owned>
     <owner type='Player' playable=''>
     </owner>
 </Owned>
@@ -103,11 +103,20 @@ która jest zależna od konkretnej gry, a nie mapy/logiki -->
 <Mine extends='Owned Enterable'>
     <generates type='Resource'>
     </generates>
+    <amount type='int'>
+    </amount>
 </Mine>
 
 <Building extends='Enterable'>
+    <!-- But what about buildings that does not produce units? like market -->
     <produce type="Unit">
     </produce>
+    <amount type='int'>
+    </amount>
+    <requireBuildings type='list' listof='Building'>
+    </requireBuildings>
+    <requireResources type='list' listof='?!'>
+    </requireResources>
 </Building>
 
 <UnitGroup extends='Unit'>
@@ -117,16 +126,18 @@ która jest zależna od konkretnej gry, a nie mapy/logiki -->
 
 <Army>
     <maxsize type='int' classvariable=''>
-    
     </maxsize>
-    <this type='list' listof="UnitGroup">
-    
+    <this type='list' listof="UnitGroup" playable=''>
     </this>
 </Army>
 
 <Spell extends='Base'>
     <action type='SpellAction'>
     </action>
+    <cost type='int'>
+    </cost>
+    <level type='int'>
+    </level>
 </Spell>
 
 <SpellGroup extends='Base'>
@@ -153,7 +164,11 @@ która jest zależna od konkretnej gry, a nie mapy/logiki -->
     </wisdom>
     <mana type="int">
     </mana>
-    <movePoints type="int">
+    <morale type="int">
+    </morale>
+    <fortune type="int">
+    </fortune>
+    <movePoints type="int" classvariable=''>
     </movePoints>
     <spells tyle='list' listof='Spell'>
     </spells>
@@ -172,9 +187,9 @@ która jest zależna od konkretnej gry, a nie mapy/logiki -->
     </buildings>
     <heroes type="list" listof="Hero">
     </heroes>
-    <hero type="Hero">
+    <hero type="Hero" playable=''>
     </hero>
-    <army type="Army">
+    <army type="Army" playable=''>
     </army>
 </Castle>
 

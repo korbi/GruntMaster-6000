@@ -2,7 +2,7 @@
 #!/usr/bin/python
 '''
 
-Script compiling config files created by hand.
+Script compiling config files created by handwriting.
 
 ToDo:
 check if it is possible to solve 'extends'
@@ -17,9 +17,6 @@ import re, os, xml, sys
 from xml.dom import minidom, Node
 
 __VERSION__ = 0.2
-
-def concChilds(first,second):
-    pass
 
 def removeContent(node, nodeTypes=[], attributes=[], nodeWithAttributes=[]):
     toRemove=[]
@@ -110,7 +107,7 @@ if __name__=='__main__':
     #zastosuj atrybuty
     # abstract - nie powinny się znaleźć w pliku
     # extends - dołącz pola z klas bazowych
-    # predefined
+    # predefined ?!
     removeContent(DOMTree,[Node.COMMENT_NODE,Node.TEXT_NODE])
     info = DOMTree.createComment('File created from %s using %s ver. %s'%(inputfile,sys.argv[0],__VERSION__))
     for c in cNodes:
@@ -121,9 +118,9 @@ if __name__=='__main__':
                 compile(c)
                 DOMTree.insertBefore(info, c)
                 removeContent(c,attributes=['extends'],nodeWithAttributes=['abstract']);
+    #wypisz skompilowaną wersję
+    #print DOMTree.toxml()
     o = open(outputfile,'w')
     o.write(DOMTree.toprettyxml(encoding='UTF-8'))
     #o.write(DOMTree.toxml(encoding='UTF-8'))
     o.close()
-    #wypisz skompilowaną wersję
-    #print DOMTree.toxml()

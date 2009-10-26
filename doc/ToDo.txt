@@ -1,0 +1,50 @@
+* oddzielić konfigurację klas/pol dostępnych w konfiguracji 
+  świata od tych dostępnych w grze/edytorze; przykład UnitGroup jest tylko w grze/edytorzemap
+  natomiast Army.maxSize tylko w edytorze konfiguracji
+  domyślnie przyjmuję, że wszystkie są dla konfiguracji
+  węzły, które mają są tylko w czasie gry, będą miały atrybut playable
+* stworzyć język opisu zdarzeń onEnter
+* stworzyć język opisu zdarzeń inUse (artefakty, umiejętności)
+* stworzyć język opisu czarów
+
+szkic języków konfiguracji:
+
+:onEnter:
+show <what>
+atack
+owned
+
+:what:
+popup1()
+popup2()
+popup3()
+
+:inUse:                         # artefakty, umiejętności
+<action> <amount> <sub>         # 1. możliwy format
+allow <spell>                   # 2. format, dający czary
+
+
+:action:
+ADD                             #+
+MUL                             #*
+DIV                             #/
+MIN                             #- jakiś zły czar
+
+:amount:                        #dostępne formaty liczb, trzeba przepisać jako regexp
+0.5
+12
+12%                             # czyli 12*1/100
+1/2                             # czyli 0.5
+
+:sub:
+gainexp                         # zdobywane doświadczenie
+attack                          # 
+defense                         #
+power                           #
+wisdom
+mana
+manareg                         # szybkość renerowania się many
+movep                           # pkt ruchu
+morale
+fortune                         # inaczej szczęście
+<resource>                      # umiejętności dające złoto, artefakty

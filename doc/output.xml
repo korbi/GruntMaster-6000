@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--File created from configuration.xml using compileconfig.py ver. 0.2-->
+<configuration version="0.2">
+	<Road>
+		<costModificator type="int"/>
+		<name type="string"/>
+	</Road>
+	<Ground>
+		<cost type="int"/>
+		<name type="string"/>
+	</Ground>
+	<Skill>
+		<inUse type="MagicItemUse"/>
+		<upgradeOf type="Skill"/>
+		<name type="string"/>
+	</Skill>
+	<Item>
+		<name type="string"/>
+	</Item>
+	<MagicItemUse>
+		<pattern type="regexp"/>
+	</MagicItemUse>
+	<MagicItemType predefined="">
+		<name type="string"/>
+	</MagicItemType>
+	<MagickItem>
+		<inUse type="MagicItemUse"/>
+		<type type="MagicItemType"/>
+		<name type="string"/>
+	</MagickItem>
+	<Obstacle>
+		<name type="string"/>
+	</Obstacle>
+	<Unit>
+		<life type="int"/>
+		<attack type="int"/>
+		<distanceAttack type="int"/>
+		<defense type="int"/>
+		<movePoints type="int"/>
+		<name type="string"/>
+	</Unit>
+	<Resource>
+		<name type="string"/>
+	</Resource>
+	<Player>
+		<color value="string"/>
+		<name type="string"/>
+	</Player>
+	<Owned>
+		<owner playable="" type="Player"/>
+	</Owned>
+	<EnterOption predefined=""/>
+	<Enterable>
+		<width type="int"/>
+		<height type="int"/>
+		<occupiedPlace listof="bool" type="list"/>
+		<enterPlace type="int"/>
+		<onEnter type="EnterOption"/>
+		<name type="string"/>
+	</Enterable>
+	<Mine>
+		<generates type="Resource"/>
+		<amount type="int"/>
+		<owner playable="" type="Player"/>
+		<width type="int"/>
+		<height type="int"/>
+		<occupiedPlace listof="bool" type="list"/>
+		<enterPlace type="int"/>
+		<onEnter type="EnterOption"/>
+		<name type="string"/>
+	</Mine>
+	<Building>
+		<produce type="Unit"/>
+		<amount type="int"/>
+		<requireBuildings listof="Building" type="list"/>
+		<requireResources listof="?!" type="list"/>
+		<width type="int"/>
+		<height type="int"/>
+		<occupiedPlace listof="bool" type="list"/>
+		<enterPlace type="int"/>
+		<onEnter type="EnterOption"/>
+		<name type="string"/>
+	</Building>
+	<UnitGroup>
+		<size type="int"/>
+		<life type="int"/>
+		<attack type="int"/>
+		<distanceAttack type="int"/>
+		<defense type="int"/>
+		<movePoints type="int"/>
+		<name type="string"/>
+	</UnitGroup>
+	<Army>
+		<maxsize classvariable="" type="int"/>
+		<this listof="UnitGroup" playable="" type="list"/>
+	</Army>
+	<Spell>
+		<action type="SpellAction"/>
+		<cost type="int"/>
+		<level type="int"/>
+		<name type="string"/>
+	</Spell>
+	<SpellGroup>
+		<spells listof="Spell" type="list"/>
+		<name type="string"/>
+	</SpellGroup>
+	<Hero>
+		<maxskills classvariable="" type="int"/>
+		<magickItemPlace classvariable="" listof="MagicItemType" type="list"/>
+		<level type="int"/>
+		<experience type="int"/>
+		<attack type="int"/>
+		<defense type="int"/>
+		<power type="int"/>
+		<wisdom type="int"/>
+		<mana type="int"/>
+		<morale type="int"/>
+		<fortune type="int"/>
+		<movePoints classvariable="" type="int"/>
+		<spells listof="Spell" tyle="list"/>
+		<skills listof="Skill" tyle="list"/>
+		<equipment listof="MagicItem" tyle="list"/>
+		<inuse listof="MagicItem" tyle="list"/>
+		<army type="Army"/>
+		<owner playable="" type="Player"/>
+		<width type="int"/>
+		<height type="int"/>
+		<occupiedPlace listof="bool" type="list"/>
+		<enterPlace type="int"/>
+		<onEnter type="EnterOption"/>
+		<name type="string"/>
+	</Hero>
+	<Castle>
+		<buildings listof="Building" type="list"/>
+		<heroes listof="Hero" type="list"/>
+		<hero playable="" type="Hero"/>
+		<army playable="" type="Army"/>
+		<owner playable="" type="Player"/>
+		<width type="int"/>
+		<height type="int"/>
+		<occupiedPlace listof="bool" type="list"/>
+		<enterPlace type="int"/>
+		<onEnter type="EnterOption"/>
+		<name type="string"/>
+	</Castle>
+</configuration>

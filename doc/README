@@ -1,0 +1,10 @@
+Things showed on uml was writed in xml file.
+To not rewrite some things many times I used 'extends' attribute,
+to mark that node is extending another one.
+I also used 'abstract' node to mark this one nodes which exists
+only for my convenience.
+Attribute 'playable' is used to mark nodes which value should not be
+specify by configuration editor but map editor or in game.
+
+compileconfig.py is making a standard file from my specific xml,
+this compiled version should be used in game and configuration editor.
